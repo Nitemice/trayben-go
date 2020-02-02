@@ -1,0 +1,26 @@
+# Based on https://blog.toshima.ru/2019/10/20/go-release-automation-with-goreleaser.html
+name: Release
+on:
+  push:
+    branches:
+      - "!*"
+    tags:
+      - "v*.*.*"
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    name: goreleaser
+    steps:
+    - name: Set up Go 1.13
+      uses: actions/setup-go@v1
+      with:
+        go-version: 1.13
+      id: go
+    - name: Check out code into the Go module directory
+      uses: actions/checkout@v1
+    - name: Release via goreleaser
+      uses: goreleaser/goreleaser-action@master
+      with:
+        args: release
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
