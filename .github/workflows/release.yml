@@ -1,5 +1,5 @@
 # Based on https://blog.toshima.ru/2019/10/20/go-release-automation-with-goreleaser.html
-name: Release
+name: release
 on:
   push:
     branches:
